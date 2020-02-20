@@ -1,0 +1,30 @@
+#include "verbs.txt"
+#include "nouns.txt"
+#include "fstream"
+#include "iostream"
+
+
+using namespace std;
+
+pair<string, string> makeSpell(){
+
+  pair<string, string> spellPair;
+
+  spellPair.first = //pick a verb
+
+    spellPair.second = //pick a noun
+
+
+
+  return spellPair;
+}
+
+
+int main(){
+
+
+  
+
+
+
+}

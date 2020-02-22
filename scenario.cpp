@@ -1,0 +1,8 @@
+#include "scenario.hpp"
+
+Scenario::Scenario(string text, Spell* spell, bool success, signed char rating){
+    _text = text;
+    _spell = spell;
+    _success = success;
+    _rating = rating;
+}

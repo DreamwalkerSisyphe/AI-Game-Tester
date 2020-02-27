@@ -1,4 +1,4 @@
-#include "scenario.hpp"
+#include "Scenario.hpp"
 
 Scenario::Scenario(string text, Spell* spell, bool success, signed char rating){
     _text = text;

@@ -1,4 +1,4 @@
-#include "spell.hpp"
+#include "Spell.hpp"
 
 Spell::Spell(pair<string, string> startSpell, pair<string, string> curSpell){
     _startSpell = startSpell;

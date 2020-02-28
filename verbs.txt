@@ -1,0 +1,7 @@
+Create
+Cast
+Remove
+Destroy
+Change
+Alter
+Control

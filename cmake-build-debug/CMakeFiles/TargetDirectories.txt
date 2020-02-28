@@ -1,0 +1,3 @@
+/Users/ninapotts/CLionProjects/game_tester/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ninapotts/CLionProjects/game_tester/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ninapotts/CLionProjects/game_tester/cmake-build-debug/CMakeFiles/game_tester.dir

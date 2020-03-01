@@ -1,6 +1,8 @@
 #include <iostream>
+#include "Transcript.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Transcript newTranscript;
+    newTranscript.getScenario();
     return 0;
 }

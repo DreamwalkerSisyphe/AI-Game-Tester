@@ -15,12 +15,11 @@ void Spell::updateLevel(){
     string start = _startSpell.first + " " + _startSpell.second;
     string cur = getName();
     int charCountStart[26]; int charCountCur[26];
-    charCountStart.fill(0); charCountCur.fill(0);
-    for(char c : start.toCharArray()){
+    for(char c : start){
         if(c >= 'a' && c <= 'z')
             charCountStart[c - 'a']++;
     }
-    for(char c : cur.toCharArray()){
+    for(char c : cur){
         if(c >= 'a' && c <= 'z')
             charCountCur[c - 'a']++;
     }

@@ -13,8 +13,11 @@ using namespace std;
 
 class Transcript {
 public:
+    Transcript();
     Scenario *getScenario();
-    Spell *getSpell();
+
+private:
+    std::vector <Scenario> allScenarios;
 };
 
 

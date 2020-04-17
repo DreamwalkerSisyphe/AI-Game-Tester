@@ -1,89 +1,96 @@
 #include "Transcript.hpp"
 
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
-#include <stdio.h>
-#include <string.h>
-
-
-#include <ostream>
+#include <fstream>
 #include <vector>
 
 using namespace std;
 
-Transcript::Transcript() {
+Transcript::Transcript(pair<string, string> _startSpell) : startSpell{_startSpell} {}
 
-}
+void Transcript::getScenario() {
+    string scenarioText;
+    cout << "Enter the scenario text: ";
+    while(cin.get() == '\n'); //Clear excessive newlines.
+    cin.unget();
+    getline(std::cin, scenarioText);
 
-// Spell *Transcript::getStartSpell(){}
+    string currentVerb;
+    string currentNoun;
+    cout << "Enter a new spell: ";
+    while(cin.get() == '\n'); //Clear excessive newlines.
+    cin.unget();
+    cin >> currentVerb;
+    cin >> currentNoun;
+    pair<string, string> newSpell;
+    newSpell.first = currentVerb;
+    newSpell.second = currentNoun;
+    Spell *currentSpell = new Spell(startSpell, newSpell);
 
-Scenario *Transcript::getScenario() {
-    std::string spell;
-    std::cout << "Players starting spell: ";
+    cout << "New spell level: " << currentSpell->getLevel() << endl;
 
-    std::string startVerb;
-    std::string startNoun;
-
-
-    std::cin >> startVerb;
-    std::cin >> startNoun;
-    startSpell.first = startVerb;
-    startSpell.second = startNoun;
-
-
-    std::string scenarioText;
-    std::cout << "Enter the scenario text: ";
-    std::getline(std::cin, scenarioText);
-
-    std::string currentVerb;
-    std::string currentNoun;
-    std::cout << "Enter a new spell: ";
-    std::cin >> currentVerb;
-    std::cin >> currentNoun;
-    currentSpell.first = currentVerb;
-    currentSpell.second = currentNoun;
-    Spell *mySpell = new Spell(startSpell, currentSpell);
-
-    int i;
-    srand(time(NULL));
-    std::vector <int> diceRolls;
+    vector <int> diceRolls;
     //dice rolls
-    for(int j = 0 ; j < 6; j ++){
-
-        i   = (rand()%6)+1;
-        diceRolls.push_back(i);
-    }
+    for(int i = 0 ; i < 6; i++)
+        diceRolls.push_back((rand()%6)+1);
 
     int successfulRolls = 0;
-    for(int i = 0; i < diceRolls.size(); i ++){
-        if(diceRolls[i] == 6){
-            //roll an extra dice
-            //std::cout<< "A dice was 6";
-            int t;
-            srand(time(NULL));
-            t   = (rand()%6)+1;
-            diceRolls[i] = t;
-            i--;
-        }else if(diceRolls[i] >= mySpell->getLevel()){
+    for(int i : diceRolls) {
+        if (i >= 4) {
+            if (i == 6) //exploding die
+                diceRolls.push_back((rand() % 6) + 1); //roll an extra dice
             successfulRolls++;
         }
     }
-    bool successfulSpell = false;
-    if(successfulRolls >= mySpell->getLevel()){
-        successfulSpell = true;
+    bool successfulSpell = successfulRolls >= currentSpell->getLevel();
+
+    cout << "Dice: " << successfulRolls << " successful dice rolls. ";
+    cout<< (successfulSpell ? "Spell successfully cast." : "Spell failed to cast.") << endl;
+
+    int successRating;
+    cout << "Success rating: ";
+    while(cin.get() == '\n'); //Clear excessive newlines.
+    cin.unget();
+    cin >> successRating;
+
+    Scenario *s = new Scenario(scenarioText, currentSpell, successfulSpell, (signed char)successRating);
+
+    allScenarios.push_back(s);
+}
+
+void Transcript::setEnding(string _ending) {ending = _ending;}
+
+string Transcript::transcribe(){
+    char r = 30;
+    char u = 31;
+    char g = 29;
+
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int month = 1 + ltm->tm_mon; int day = ltm->tm_mday; int year = 1900 + ltm->tm_year;
+    int hour = ltm->tm_hour; int minute = ltm->tm_min; int second = ltm->tm_sec;
+
+    string filename = (month < 10 ? "0" : "") + to_string(month) + '-' + (day < 10 ? "0" : "") + to_string(day) + '-' + to_string(year) + '('
+            + (hour < 10 ? "0" : "") + to_string(hour) + ';' + (minute < 10 ? "0" : "") + to_string(minute) + ';' + (second < 10 ? "0" : "") + to_string(second)
+            + ").gts"; //Date and time.gts (Game Transcript) file extension
+    ofstream script("transcripts/" + filename);
+
+    script << startSpell.first + " " + startSpell.second;
+    for(Scenario *s : allScenarios){
+        script << r;
+        script << s->_text << u;
+        script << s->_spell->getName() << u;
+        char c = 112; //First four filler bits
+        c |= (s->_success ? 8 : 0); //Fifth bit representing success
+        c |= ((int)s->_rating) + 2; //Last three bits representing the rating
+        script << c;
     }
 
-    std::cout << "Dice: " << successfulRolls << "successful dice rolls. ";
-    if(successfulSpell){
-        std::cout<< "Spell successfully cast. \n";
-    }
+    script << g;
+    script << ending;
 
-    signed char successRating;
-    std::cout << "Success rating: ";
-    std::cin >> successRating;
+    script.close();
 
-    Scenario *s = new Scenario(scenarioText, mySpell, successfulSpell, successRating);
-
-    return s;
+    return filename;
 }

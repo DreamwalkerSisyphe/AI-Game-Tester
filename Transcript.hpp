@@ -1,16 +1,22 @@
+#ifndef _TRANSCRIPT_HPP
+#define _TRANSCRIPT_HPP
 
 #include <string>
 #include "Scenario.hpp"
-#include "Spell.hpp"
 
 using namespace std;
 
 class Transcript {
 public:
-    Transcript();
-    Scenario *getScenario();
-    Spell *getStartSpell();
+    Transcript(pair<string, string> _startSpell);
+    void getScenario();
+    void setEnding(string _ending);
+    string transcribe();
 
 private:
-    std::vector<Scenario> allScenarios;
+    vector<Scenario*> allScenarios;
+    pair<string, string> startSpell;
+    string ending;
 };
+
+#endif

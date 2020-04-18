@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -g
+CXXFLAGS = -std=c++11 -Wall -g
 
 aitran: main.o Transcript.o Scenario.o Spell.o
 	$(CXX) $(CXXFLAGS) -o aitran main.o Transcript.o Scenario.o Spell.o

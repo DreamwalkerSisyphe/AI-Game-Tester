@@ -4,7 +4,7 @@ accept
 accomplish
 achieve
 acquire
-acted
+act
 activate
 adapt
 add
@@ -19,7 +19,7 @@ agree
 alert
 alight
 allow
-altered
+alter
 amuse
 analyze
 announce
@@ -29,7 +29,7 @@ anticipate
 apologize
 appear
 applaud
-applied
+apply
 appoint
 appraise
 appreciate
@@ -52,7 +52,7 @@ attain
 attempt
 attend
 attract
-audited
+audit
 avoid
 awake
 back
@@ -273,13 +273,13 @@ dust
 dwell
 earn
 eat
-edited
+edit
 educate
 eliminate
 embarrass
 employ
 empty
-enacted
+enact
 encourage
 end
 endure
@@ -485,14 +485,13 @@ leap
 learn
 leave
 lecture
-led
 lend
 let
 level
 license
 lick
 lie
-lifted
+lift
 light
 lighten
 like
@@ -576,7 +575,7 @@ open
 operate
 order
 organize
-oriented
+orient
 originate
 overcome
 overdo
@@ -630,7 +629,7 @@ possess
 post
 pour
 practice
-praised
+praise
 pray
 preach
 precede
@@ -724,7 +723,7 @@ rescue
 research
 resolve
 respond
-restored
+restore
 restructure
 retire
 retrieve

@@ -13,7 +13,7 @@ Trie::Node::Node(string _word){
 
 Trie::Node* Trie::insert(string word) {
     Node* parent = root;
-    for(int i = 0; i < word.size(); i++){
+    for(unsigned int i = 0; i < word.size(); i++){
         if(parent->letters[word[i]-'a'] != nullptr)
             parent = parent->letters[word[i]-'a'];
         else{
@@ -28,7 +28,7 @@ Trie::Node* Trie::insert(string word) {
 
 Trie::Node* Trie::search(string word) {
     Node* parent = root;
-    for(int i = 0; i < word.size(); i++){
+    for(unsigned int i = 0; i < word.size(); i++){
         if(parent->letters[word[i]-'a'] != nullptr)
             parent = parent->letters[word[i]-'a'];
         else{

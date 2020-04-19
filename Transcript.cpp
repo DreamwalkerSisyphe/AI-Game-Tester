@@ -1,28 +1,27 @@
 #include "Transcript.hpp"
 
-#include <iostream>
-#include <ctime>
-#include <fstream>
-#include <vector>
-
-using namespace std;
-
 Transcript::Transcript(pair<string, string> _startSpell) : startSpell{_startSpell} {}
 
 void Transcript::getScenario() {
     string scenarioText;
     cout << "Enter the scenario text: ";
-    while(cin.get() == '\n'); //Clear excessive newlines.
-    cin.unget();
+    cinclr();
     getline(std::cin, scenarioText);
 
     string currentVerb;
     string currentNoun;
-    cout << "Enter a new spell: ";
-    while(cin.get() == '\n'); //Clear excessive newlines.
-    cin.unget();
-    cin >> currentVerb;
-    cin >> currentNoun;
+    bool valid = true;
+    extern bool safetyMode;
+    do {
+        if(!valid)
+            cout << "Spell uses words not in dictionary." << endl;
+        cout << "Enter a new spell: ";
+        cinclr();
+        cin >> currentVerb;
+        cin >> currentNoun;
+        if(safetyMode)
+            valid = inDict(currentVerb, currentNoun);
+    }while(!valid);
     pair<string, string> newSpell;
     newSpell.first = currentVerb;
     newSpell.second = currentNoun;
@@ -50,8 +49,7 @@ void Transcript::getScenario() {
 
     int successRating;
     cout << "Success rating: ";
-    while(cin.get() == '\n'); //Clear excessive newlines.
-    cin.unget();
+    cinclr();
     cin >> successRating;
 
     Scenario *s = new Scenario(scenarioText, currentSpell, successfulSpell, (signed char)successRating);

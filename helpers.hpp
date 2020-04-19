@@ -1,7 +1,11 @@
 #ifndef _HELPERS_HPP
 #define _HELPERS_HPP
 
-#include <bits/stdc++.h>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <fstream>
 
 using namespace std;
 

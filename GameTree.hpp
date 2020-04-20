@@ -7,10 +7,10 @@
 class GameTree {
 public:
     GameTree();
-    pair<string, string> getBest(string context, int change);
+    pair<string, string> getBestSpell(string s, string context, int change);
 
 private:
-    int eval(string word, string context);
+    int eval(Trie::Node* verb, Trie::Node* noun, string context);
     Trie* verbTrie;
     Trie* nounTrie;
 };

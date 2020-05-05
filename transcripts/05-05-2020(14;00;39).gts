@@ -1,0 +1,1 @@
+receive sockThe sock had gold from the kingreceive rockwThe gold in the sock turned into rocks upon receivingreceive lock{The rocks then turned into a lockdeceive lockrThe gold ended up killing the person who received it

@@ -1,0 +1,1 @@
+describe educationThe person is missing schoolprescribe vacation~The person ended up not going on vacationprescribe education{The person ended up not having school

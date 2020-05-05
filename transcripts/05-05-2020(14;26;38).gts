@@ -1,0 +1,1 @@
+assure crowThe crow had gold from someoneensure crown{The crow flew away with the gold crown

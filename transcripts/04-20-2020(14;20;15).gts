@@ -1,0 +1,1 @@
+live manFighting with swordcast fire}The man died with the sword

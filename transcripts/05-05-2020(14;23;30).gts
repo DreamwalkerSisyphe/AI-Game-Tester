@@ -1,0 +1,1 @@
+clarify bookThe book was hidding with the kingclarify look|THe book remained behind hidden eyes

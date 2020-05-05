@@ -1,0 +1,1 @@
+pull chickensThe chickens were blocking the traveler's pathuse string{The string wasn't strong enough to pull the chickens

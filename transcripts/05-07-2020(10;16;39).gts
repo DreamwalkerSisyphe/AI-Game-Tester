@@ -1,0 +1,1 @@
+display boneThe bone was on display at the museumdisplay stonerThe bone on displayed turned into stone

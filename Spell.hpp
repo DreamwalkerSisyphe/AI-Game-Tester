@@ -10,8 +10,9 @@ using namespace std;
 class Spell{
 public:
     Spell(pair<string, string> startSpell, pair<string, string> curSpell);
-
     string getName();
+    string getVerb();
+    string getNoun();
     int getLevel();
 
 protected:

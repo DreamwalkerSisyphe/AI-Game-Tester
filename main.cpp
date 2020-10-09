@@ -8,17 +8,16 @@ using namespace std;
 //Global vars
 vector<string> verbs;
 vector<string> nouns;
-bool safetyMode;
+//bool safetyMode;
 
 int main(){
     srand(time(NULL)); //Seed RNG
-
-    cout << "Use safety mode (prevents you from using words outside the starting dictionary)? (y/n):";
     char c;
+    /*cout << "Use safety mode (prevents you from using words outside the starting dictionary)? (y/n):";
     cinclr();
     cin >> c;
     safetyMode = (c == 'y');
-    cout << endl;
+    cout << endl;*/
     //Get words from files.
     verbs = getWords("verbs.txt");
     nouns = getWords("nouns.txt");

@@ -8,6 +8,10 @@ Spell::Spell(pair<string, string> startSpell, pair<string, string> curSpell){
 
 string Spell::getName(){return _curSpell.first + " " + _curSpell.second;}
 
+string Spell::getVerb() {return _curSpell.first;}
+
+string Spell::getNoun() {return _curSpell.second;}
+
 int Spell::getLevel(){
     updateLevel();
     return _level;

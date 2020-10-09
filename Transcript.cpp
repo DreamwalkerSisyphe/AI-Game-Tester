@@ -1,6 +1,10 @@
 #include "Transcript.hpp"
 
-Transcript::Transcript(pair<string, string> _startSpell) : startSpell{_startSpell} {}
+
+Transcript::Transcript(pair<string, string> _startSpell) : startSpell{_startSpell} {
+    currentSpell.first = "";
+    currentSpell.second = "";
+}
 
 void Transcript::getScenario() {
     string scenarioText;
@@ -8,7 +12,7 @@ void Transcript::getScenario() {
     cinclr();
     getline(std::cin, scenarioText);
 
-    string currentVerb;
+    /*string currentVerb;
     string currentNoun;
     bool valid = true;
     extern bool safetyMode;
@@ -21,12 +25,14 @@ void Transcript::getScenario() {
         cin >> currentNoun;
         if(safetyMode)
             valid = inDict(currentVerb, currentNoun);
-    }while(!valid);
-    pair<string, string> newSpell;
-    newSpell.first = currentVerb;
-    newSpell.second = currentNoun;
+    }while(!valid);*/
+    GameTree* GT = new GameTree();
+    pair<string, string> newSpell = GT->getBestSpell(startSpell, currentSpell, scenarioText, 3);
+    currentSpell = newSpell;
+    //newSpell.first = currentVerb;
+    //newSpell.second = currentNoun;
     Spell *currentSpell = new Spell(startSpell, newSpell);
-
+    cout << "Player casts: " << newSpell.first << " " << newSpell.second << endl;
     cout << "New spell level: " << currentSpell->getLevel() << endl;
 
     vector <int> diceRolls;
@@ -53,7 +59,6 @@ void Transcript::getScenario() {
     cin >> successRating;
 
     Scenario *s = new Scenario(scenarioText, currentSpell, successfulSpell, (signed char)successRating);
-
     allScenarios.push_back(s);
 }
 

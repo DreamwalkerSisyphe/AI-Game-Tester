@@ -5,8 +5,7 @@
 #include <ctime>
 #include <vector>
 #include <string>
-#include "Scenario.hpp"
-#include "helpers.hpp"
+#include "GameTree.hpp"
 
 using namespace std;
 
@@ -18,6 +17,7 @@ public:
     string transcribe();
 
 private:
+    pair<string, string> currentSpell;
     vector<Scenario*> allScenarios;
     pair<string, string> startSpell;
     string ending;

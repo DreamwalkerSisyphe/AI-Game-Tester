@@ -40,6 +40,25 @@ bool inDict(string verb, string noun){
     return (find(verbs.begin(), verbs.end(), verb) != verbs.end()) && (find(nouns.begin(), nouns.end(), noun) != nouns.end());
 }
 
+int countDiff(string pre, string post){
+    vector<int> charCountPre(26, 0); vector<int> charCountPost(26, 0);
+    for(char c : pre){
+        char lowc = tolower(c);
+        if(lowc >= 'a' && lowc <= 'z')
+            charCountPre[lowc - 'a']++;
+    }
+    for(char c : post){
+        char lowc = tolower(c);
+        if(lowc >= 'a' && lowc <= 'z')
+            charCountPost[lowc - 'a']++;
+    }
+    int diff = 0;
+    for(int i = 0; i < 26; i++){
+        diff += abs(charCountPre[i] - charCountPost[i]);
+    }
+    return diff;
+}
+
 string strDiff(string pre, string post){
     vector<int> count(26, 0);
     string diff;
@@ -47,9 +66,9 @@ string strDiff(string pre, string post){
         count[c-'a']++;
     for(char c : post)
         count[c-'a']--;
-    for(unsigned int i = 0; i < count.size(); i++){
+    for(int i = 0; i < count.size(); i++){
         if(count[i] > 0) {
-            char c = i - 'a';
+            char c = 'a' + i;
             for (int j = 0; j < count[i]; j++)
                 diff.push_back(c);
         }
@@ -68,6 +87,34 @@ int countAdditions(string pre, string post){
         if(count[i] > 0)
             for (int j = 0; j < count[i]; j++)
                 diff++;
+    }
+    return diff;
+}
+
+int compareWords(string a, string b){
+    stringstream as(a);
+    stringstream bs(b);
+    map<string, int> aWords;
+    map<string, int> bWords;
+    string temp;
+    while(as){
+        as >> temp;
+        temp.erase(remove_if(temp.begin(), temp.end(), [](unsigned char c){return !isalpha(c);}), temp.end());
+        transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+        ++aWords[temp];
+    }
+    while(bs){
+        bs >> temp;
+        temp.erase(remove_if(temp.begin(), temp.end(), [](unsigned char c){return !isalpha(c);}), temp.end());
+        transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+        ++bWords[temp];
+    }
+    int diff = 0;
+    for (pair<std::string, int> element : aWords){ //Initializes non shared words
+        bWords[element.first];
+    }
+    for (pair<std::string, int> element : bWords){
+        diff += abs(element.second - aWords[element.first]);
     }
     return diff;
 }

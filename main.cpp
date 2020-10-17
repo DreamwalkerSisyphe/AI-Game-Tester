@@ -10,6 +10,10 @@ vector<string> verbs;
 vector<string> nouns;
 //bool safetyMode;
 
+/* NOTICE: AI is far from refined and may produce variable results
+ and you may potentially run into unaccounted for bugs. While results
+ should allign with the data specifications, there is no guarantee */
+
 int main(){
     srand(time(NULL)); //Seed RNG
     char c;
